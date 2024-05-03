@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react"
 import axios from "axios"
 import "./App.css"
-import { ValidationError } from "./App.interface"
 import Dropdown from "./components/Dropdown"
 import SceneImage from "./components/SceneImage"
+import ErrorBoundary from "./components/ErrorBoundary"
 import { useContext } from "./context/use-context"
+import { ValidationError } from "./App.interface"
 
 function App() {
   const [hasLoaded, setHasLoaded] = useState<boolean>(false)
@@ -85,4 +86,10 @@ function App() {
   )
 }
 
-export default App
+export default function AppErrorBoundary() {
+  return (
+    <ErrorBoundary>
+      <App />
+    </ErrorBoundary>
+  )
+}

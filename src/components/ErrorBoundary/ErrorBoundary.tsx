@@ -19,7 +19,10 @@ class ErrorBoundary extends Component<Props, State> {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="w-screen h-screen flex flex-col justify-center items-center text-center text-3xl">
+        <div
+          data-testid="data-error"
+          className="w-screen h-screen flex flex-col justify-center items-center text-center text-3xl"
+        >
           <span>
             We haven&lsquo;t been able to load your information at this time.
           </span>

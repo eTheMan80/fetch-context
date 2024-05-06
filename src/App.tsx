@@ -51,6 +51,12 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  useEffect(() => {
+    if (hasError) {
+      throw new Error("Failed to load data!!")
+    }
+  }, [hasError])
+
   if (!hasLoaded) {
     return (
       <div
@@ -58,20 +64,6 @@ function App() {
         className="w-screen h-screen flex flex-col justify-center items-center text-center text-3xl"
       >
         Please wait while we load your information.
-      </div>
-    )
-  }
-
-  if (hasError) {
-    return (
-      <div
-        data-testid="data-error"
-        className="w-screen h-screen flex flex-col justify-center items-center text-center text-3xl"
-      >
-        <span>
-          We haven&lsquo;t been able to load your information at this time.
-        </span>
-        <span>Please contact customer support to assist with this issue.</span>
       </div>
     )
   }

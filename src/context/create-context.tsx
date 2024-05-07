@@ -1,18 +1,34 @@
 import React from "react"
 
-export const createContext = <T extends object>() => {
+export const createStateContext = <T extends object>() => {
   const Context = React.createContext<T | undefined>(undefined)
 
-  const useContext = () => {
+  const useStateContext = () => {
     const ctx = React.useContext(Context)
 
     if (ctx === undefined) {
       throw new Error(
-        "useContext should be used within a Provider and a value must be provided",
+        "useStateContext should be used within a Provider and a value must be provided",
       )
     }
     return ctx
   }
 
-  return [useContext, Context.Provider] as const
+  return [useStateContext, Context.Provider] as const
+}
+export const createDispatchContext = <T extends object>() => {
+  const Context = React.createContext<T | undefined>(undefined)
+
+  const useDispatchContext = () => {
+    const ctx = React.useContext(Context)
+
+    if (ctx === undefined) {
+      throw new Error(
+        "useDispatchContext should be used within a Provider and a value must be provided",
+      )
+    }
+    return ctx
+  }
+
+  return [useDispatchContext, Context.Provider] as const
 }

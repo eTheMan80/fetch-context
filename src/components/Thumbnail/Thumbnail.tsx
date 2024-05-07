@@ -1,8 +1,8 @@
 import { SceneProps } from "../../App.interface"
-import { useContext } from "../../context/use-context"
+import { useDispatchAppContext } from "../../context/use-context"
 
 const Thumbnail = ({ data }: { data: SceneProps[] }): JSX.Element => {
-  const { dispatch } = useContext()
+  const { dispatch } = useDispatchAppContext()
   const dataIsNotEmpty = Array.isArray(data) && data.length > 0
 
   const handleClick = (index: number, imgUrl: string, imgSrcSet: string) => {

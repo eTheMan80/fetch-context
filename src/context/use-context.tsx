@@ -1,19 +1,27 @@
 import { Dispatch, PropsWithChildren, useReducer } from "react"
 import { ActionTypes, initialState, InitialState, reducer } from "../reducer"
-import { createContext } from "./create-context"
+import { createStateContext, createDispatchContext } from "./create-context"
 
-type AppContextState = {
+type StateContextState = {
   state: InitialState
+}
+type DispatchContextState = {
   dispatch: Dispatch<ActionTypes>
 }
 
-const [useAppContext, ContextProvider] = createContext<AppContextState>()
+const [useStateContext, StateContextProvider] =
+  createStateContext<StateContextState>()
+const [useDispatchContext, DispatchContextProvider] =
+  createDispatchContext<DispatchContextState>()
 
-export const useContext = useAppContext
+export const useStateAppContext = useStateContext
+export const useDispatchAppContext = useDispatchContext
 
 export const AppProvider = ({ children }: PropsWithChildren) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   return (
-    <ContextProvider value={{ state, dispatch }}>{children}</ContextProvider>
+    <DispatchContextProvider value={{ dispatch }}>
+      <StateContextProvider value={{ state }}>{children}</StateContextProvider>
+    </DispatchContextProvider>
   )
 }

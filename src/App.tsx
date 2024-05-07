@@ -4,13 +4,17 @@ import "./App.css"
 import Dropdown from "./components/Dropdown"
 import SceneImage from "./components/SceneImage"
 import ErrorBoundary from "./components/ErrorBoundary"
-import { useContext } from "./context/use-context"
+import {
+  useStateAppContext,
+  useDispatchAppContext,
+} from "./context/use-context"
 import { ValidationError } from "./App.interface"
 
 function App() {
   const [hasLoaded, setHasLoaded] = useState<boolean>(false)
   const [hasError, setHasError] = useState<boolean>(false)
-  const { state, dispatch } = useContext()
+  const { state } = useStateAppContext()
+  const { dispatch } = useDispatchAppContext()
   const { scene, img, imgIndex } = state
   const sceneImageToDisplay = scene && scene[imgIndex]
 

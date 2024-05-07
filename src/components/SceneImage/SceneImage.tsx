@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from "react"
 import Thumbnail from "../Thumbnail"
-import { useContext } from "../../context/use-context"
+import { useStateAppContext } from "../../context/use-context"
 
 const SceneImage = ({
   img,
@@ -10,7 +10,7 @@ const SceneImage = ({
   const [inputValue, setInputValue] = useState<string>("50")
   const {
     state: { scene },
-  } = useContext()
+  } = useStateAppContext()
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value)
